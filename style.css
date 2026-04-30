@@ -1573,3 +1573,11 @@ form { width: 100%; animation: fadeIn 0.8s ease-in-out; }
     font-size: 0.82rem;
   }
 }
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}

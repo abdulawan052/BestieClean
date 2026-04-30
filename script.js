@@ -64,62 +64,62 @@ document.addEventListener('DOMContentLoaded', function () {
     slideInterval = setInterval(nextSlide, 5000);
   }
 
-  /* ================================================
-     INDUSTRIES / SECTORS — Pill Tabs (new design)
-  ================================================ */
-  const tabPills  = document.querySelectorAll('.tab-pill');
-  const tabPanels = document.querySelectorAll('.tab-panel');
+/* ================================================
+   SECTORS / INDUSTRIES TABS (FIXED VERSION)
+================================================ */
 
-  tabPills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      const tabId = pill.getAttribute('data-tab');
+const tabPills = document.querySelectorAll('.tab-pill');
+const tabPanels = document.querySelectorAll('.tab-panel');
 
-      // Deactivate all
-      tabPills.forEach(p  => p.classList.remove('active'));
-      tabPanels.forEach(p => {
-        p.classList.remove('active');
-        p.style.display = 'none';
-      });
+function activateTab(tabId) {
 
-      // Activate selected
-      pill.classList.add('active');
-      const target = document.getElementById(tabId);
-      if (target) {
-        target.style.display = 'block';
-        // Double rAF so display:block paints before CSS animation fires
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            target.classList.add('active');
-          });
-        });
-      }
+  tabPills.forEach(p => p.classList.remove('active'));
+  tabPanels.forEach(panel => panel.classList.remove('active'));
 
-      // Stagger the feature list items in
-      setTimeout(() => animateListItems(tabId), 50);
+  const activePill = document.querySelector(`.tab-pill[data-tab="${tabId}"]`);
+  if (activePill) activePill.classList.add('active');
+
+  const target = document.getElementById(tabId);
+  if (!target) return;
+
+  target.classList.add('active');
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      animateListItems(target);
     });
   });
+}
 
-  /* Stagger feature-list items on panel reveal */
-  function animateListItems(panelId) {
-    const panel = document.getElementById(panelId);
-    if (!panel) return;
-    const items = panel.querySelectorAll('.feature-list li');
-    items.forEach((item, i) => {
-      item.style.opacity   = '0';
-      item.style.transform = 'translateX(-10px)';
-      item.style.transition = `opacity 0.35s ease ${0.15 + i * 0.07}s,
-                               transform 0.35s ease ${0.15 + i * 0.07}s`;
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          item.style.opacity   = '1';
-          item.style.transform = 'translateX(0)';
-        });
-      });
+/* Animate feature list */
+function animateListItems(panel) {
+  const items = panel.querySelectorAll('.feature-list li');
+
+  items.forEach((item, i) => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateX(-10px)';
+    item.style.transition = `all 0.35s ease ${i * 0.07}s`;
+
+    requestAnimationFrame(() => {
+      item.style.opacity = '1';
+      item.style.transform = 'translateX(0)';
     });
-  }
+  });
+}
 
-  // Animate the first active panel on page load
-  animateListItems('construction');
+/* Click events */
+tabPills.forEach(pill => {
+  pill.addEventListener('click', () => {
+    const tabId = pill.getAttribute('data-tab');
+    activateTab(tabId);
+  });
+});
+
+/* INIT DEFAULT TAB */
+const firstActivePill = document.querySelector('.tab-pill.active');
+if (firstActivePill) {
+  activateTab(firstActivePill.getAttribute('data-tab'));
+}
 
   /* Scroll-reveal: stagger pill buttons + header when section enters viewport */
   const sectorsSection = document.querySelector('.sectors');
