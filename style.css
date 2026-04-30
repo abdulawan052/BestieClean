@@ -1581,3 +1581,238 @@ form { width: 100%; animation: fadeIn 0.8s ease-in-out; }
 .tab-panel.active {
   display: block;
 }
+
+/* =========================================================
+   PREMIUM SECTOR SECTION
+========================================================= */
+
+.sector-section {
+    position: relative;
+
+    overflow: hidden;
+
+    background: #020617;
+
+    padding: 120px 0;
+}
+
+/* PARTICLES */
+#particles-js {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 1;
+}
+
+/* GLOW OVERLAY */
+.gradient-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    background:
+    radial-gradient(
+        circle at top left,
+        rgba(37,99,235,0.18),
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at bottom right,
+        rgba(6,182,212,0.14),
+        transparent 40%
+    );
+}
+
+/* CONTENT */
+.sector-section .container {
+    position: relative;
+    z-index: 5;
+}
+
+/* GLASS EFFECT */
+.tab-panel {
+    background: rgba(255,255,255,0.04);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(16px);
+
+    border-radius: 30px;
+
+    overflow: hidden;
+
+    transition: 0.4s ease;
+}
+
+/* HOVER */
+.tab-panel:hover {
+    transform: translateY(-6px);
+
+    border-color: rgba(56,189,248,0.3);
+
+    box-shadow:
+    0 0 40px rgba(56,189,248,0.12);
+}
+
+/* IMAGE ZOOM */
+.visual-card img {
+    transition: 0.6s ease;
+}
+
+.tab-panel:hover img {
+    transform: scale(1.05);
+}
+
+/* ORBS */
+.orb {
+    filter: blur(120px);
+
+    opacity: 0.22;
+}
+
+.more-services-section {
+    position: relative;
+    overflow: hidden;
+
+    padding: 120px 8%;
+
+    /* NEW PREMIUM COLOR (different from sectors) */
+    background: linear-gradient(
+        135deg,
+        #050816,
+        #0b1b3a,
+        #071022
+    );
+
+    isolation: isolate;
+}
+
+/* GRID FIX: 3 ITEMS PER ROW */
+.more-services-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 30px;
+
+    margin-top: 70px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .more-services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .more-services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* BACKGROUND EFFECT (SOFT BLUE GLOW) */
+.mesh-gradient {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+
+    background:
+    radial-gradient(circle at 20% 20%, rgba(59,130,246,0.20), transparent 35%),
+
+    radial-gradient(circle at 80% 30%, rgba(99,102,241,0.15), transparent 40%),
+
+    radial-gradient(circle at 50% 80%, rgba(6,182,212,0.12), transparent 40%);
+
+    animation: meshMove 14s ease-in-out infinite alternate;
+}
+
+@keyframes meshMove {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+/* CARD UPDATE */
+.more-service-card {
+    position: relative;
+
+    padding: 35px;
+
+    border-radius: 26px;
+
+    background: rgba(255,255,255,0.05);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(14px);
+
+    color: white;
+
+    transition: 0.4s ease;
+}
+
+/* HOVER */
+.more-service-card:hover {
+    transform: translateY(-10px);
+
+    border-color: rgba(59,130,246,0.4);
+
+    box-shadow: 0 0 30px rgba(59,130,246,0.15);
+}
+
+/* ICON */
+.more-service-card .why-icon {
+    font-size: 42px;
+    margin-bottom: 18px;
+}
+
+/* TEXT COLOR FIX */
+.more-service-card p {
+    color: rgba(255,255,255,0.75);
+}
+
+#more-services {
+    background: linear-gradient(
+        135deg,
+        #0b1220,
+        #0f1a2b,
+        #0a0f1a
+    );
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  z-index: 99999;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-float img {
+  width: 24px;
+  height: 24px;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
